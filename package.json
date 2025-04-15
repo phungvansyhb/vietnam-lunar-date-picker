@@ -1,5 +1,5 @@
 {
-	"name": "lunar-date",
+	"name": "@phungvansyhb/vietnamese-lunar-date-picker",
 	"version": "1.0.0",
 	"description": "A React component for displaying solar and lunar dates with Vietnamese holiday support",
 	"license": "MIT",
@@ -17,8 +17,7 @@
 		"typescript": "^5.8.3"
 	},
 	"scripts": {
-		"build": "tsc -p tsconfig.build.json --emitDeclarationOnly && rollup -c",
-		"build:local": "tsc --emitDeclarationOnly && rollup -c",
+		"build": "tsc --emitDeclarationOnly && rollup -c",
 		"start": "rollup -c -w",
 		"clean": "rimraf dist",
 		"prebuild": "npm run clean",
