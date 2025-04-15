@@ -1,0 +1,60 @@
+{
+	"name": "lunar-date",
+	"version": "1.0.0",
+	"description": "A React component for displaying solar and lunar dates with Vietnamese holiday support",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+		"@types/react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
+		"babel-core": "^6.26.3",
+		"babel-runtime": "^6.26.0",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"rimraf": "^6.0.1",
+		"rollup": "^4.40.0",
+		"rollup-plugin-sass": "^1.15.2",
+		"rollup-plugin-typescript2": "^0.36.0",
+		"typescript": "^5.8.3"
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json --emitDeclarationOnly && rollup -c",
+		"build:local": "tsc --emitDeclarationOnly && rollup -c",
+		"start": "rollup -c -w",
+		"clean": "rimraf dist",
+		"prebuild": "npm run clean",
+		"prepare": "npm run build"
+	},
+	"peerDependencies": {
+		"react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+		"react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+	},
+	"files": [
+		"dist"
+	],
+	"main": "dist/index.js",
+	"module": "dist/index.esm.js",
+	"types": "dist/index.d.ts",
+	"sideEffects": false,
+	"type": "module",
+	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+	"dependencies": {
+		"@nghiavuive/lunar_date_vi": "^1.0.0",
+		"dayjs": "^1.11.0"
+	},
+	"keywords": [
+		"react",
+		"calendar",
+		"lunar",
+		"vietnamese",
+		"holiday"
+	],
+	"author": "Phung Van Sy, Michel",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/YOUR_USERNAME/lunar-date.git"
+	},
+	"bugs": {
+		"url": "https://github.com/YOUR_USERNAME/lunar-date/issues"
+	},
+	"homepage": "https://github.com/YOUR_USERNAME/lunar-date#readme"
+}
