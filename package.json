@@ -51,10 +51,10 @@
 	"author": "Phung Van Sy, Michel",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/YOUR_USERNAME/lunar-date.git"
+		"url": "git+https://github.com/phungvansyhb/vietnam-lunar-date-picker"
 	},
 	"bugs": {
-		"url": "https://github.com/YOUR_USERNAME/lunar-date/issues"
+		"url": "https://github.com/phungvansyhb/vietnam-lunar-date-picker/issues"
 	},
-	"homepage": "https://github.com/YOUR_USERNAME/lunar-date#readme"
+	"homepage": "https://github.com/phungvansyhb/vietnam-lunar-date-picker#readme"
 }
