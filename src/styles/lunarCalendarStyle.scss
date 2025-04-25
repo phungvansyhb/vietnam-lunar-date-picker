@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use './index.scss' as *;
+
 .lunar-calendar {
     width: 100%;
     min-width: 600px;
@@ -51,12 +54,11 @@
           outline: none;
   
           &:hover {
-            border-color: #40a9ff;
+            border-color: var(--calendar-active-background-color);
           }
   
           &:focus {
-            border-color: #40a9ff;
-            box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+            border-color: var(--calendar-active-background-color);
           }
         }
       }
@@ -97,7 +99,7 @@
         color: #666;
   
         &.sunday {
-          color: #ff4d4f;
+          color: var(--calendar-weekend-color);
         }
       }
     }
@@ -125,16 +127,20 @@
       }
   
       &.sunday {
-        color: #ff4d4f;
+        color: var(--calendar-weekend-color);
       }
   
       &.today {
-        border: 1px solid #91d5ff;
+        border: 1px solid var(--calendar-today-color);
       }
   
       &.selected {
-        background-color: #e6f7ff;
-        border: 1px solid #91d5ff;
+        background-color: var(--calendar-active-background-color);
+        border: 1px solid var(--calendar-active-background-color);
+        color: var(--calendar-selected-color);
+        .lunar-date{
+            color: var(--calendar-selected-color);
+        }
       }
   
       &.disabled {
@@ -163,7 +169,7 @@
       .event-indicator {
         margin-top: 8px;
         align-self: flex-start;
-        color: #ff0000;
+        color: var(--calendar-active-background-color);
         font-size: 12px;
       }
     }

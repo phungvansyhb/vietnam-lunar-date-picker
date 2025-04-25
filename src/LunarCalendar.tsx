@@ -1,12 +1,10 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { SolarDate } from '@nghiavuive/lunar_date_vi';
-import './lunarCalendarStyle.scss';
 import { ArrowLeftIcon } from './icons/ArrowLeftIcon';
 import { ArrowLeftLight } from './icons/ArrowLeftLight';
 import { ArrowRightLight } from './icons/ArrowRightLight';
 import { ArrowRightIcon } from './icons/ArrowRightIcon';
-
 interface Props {
 	value?: Date;
 	onChange?: (date: Date) => void;
@@ -17,89 +15,90 @@ interface Props {
 	locale?: string;
 	maxDate?: Date;
 	minDate?: Date;
-	events?: { type: 'anually' | 'once'; date: Date; content: string; isLunar: boolean }[];
+	events?: { type: 'annually' | 'once'; date: Date; content: string; isLunar: boolean }[];
+	
 }
 
 export const VietNameseEvents = [
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: false,
 		date: new Date('2025-04-30'),
 		content: 'Ngày Giải phóng miền Nam',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: false,
 		date: new Date('2025-05-01'),
 		content: 'Ngày Quốc tế Lao động',
 	},
-	{ type: 'anually', isLunar: false, date: new Date('2025-09-02'), content: 'Ngày Quốc khánh' },
+	{ type: 'annualy', isLunar: false, date: new Date('2025-09-02'), content: 'Ngày Quốc khánh' },
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: true,
 		date: new Date('2025-01-01'),
 		content: 'Mùng 1 Tết Nguyên đán',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: true,
 		date: new Date('2025-01-02'),
 		content: 'Mùng 2 Tết Nguyên đán',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: true,
 		date: new Date('2025-01-03'),
 		content: 'Mùng 3 Tết Nguyên đán',
 	},
-	{ type: 'anually', isLunar: true, date: new Date('2025-03-10'), content: 'Giỗ Tổ Hùng Vương' },
-	{ type: 'anually', isLunar: false, date: new Date('2025-06-28'), content: 'Ngày Gia đình Việt Nam' },
-	{ type: 'anually', isLunar: false, date: new Date('2025-10-20'), content: 'Ngày Phụ nữ Việt Nam' },
-	{ type: 'anually', isLunar: false, date: new Date('2025-11-20'), content: 'Ngày Nhà giáo Việt Nam' },
+	{ type: 'annualy', isLunar: true, date: new Date('2025-03-10'), content: 'Giỗ Tổ Hùng Vương' },
+	{ type: 'annualy', isLunar: false, date: new Date('2025-06-28'), content: 'Ngày Gia đình Việt Nam' },
+	{ type: 'annualy', isLunar: false, date: new Date('2025-10-20'), content: 'Ngày Phụ nữ Việt Nam' },
+	{ type: 'annualy', isLunar: false, date: new Date('2025-11-20'), content: 'Ngày Nhà giáo Việt Nam' },
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: false,
 		date: new Date('2025-12-22'),
 		content: 'Ngày thành lập Quân đội Nhân dân Việt Nam',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: true,
 		date: new Date('2025-01-15'),
 		content: 'Tết Nguyên tiêu',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: true,
 		date: new Date('2025-04-15'),
 		content: 'Lễ Phật Đản',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: true,
 		date: new Date('2025-07-15'),
 		content: 'Lễ Vu Lan',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: true,
 		date: new Date('2025-08-15'),
 		content: 'Tết Trung Thu',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: true,
 		date: new Date('2025-12-23'),
 		content: 'Tiễn Ông Táo về trời',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: false,
 		date: new Date('2025-03-08'),
 		content: 'Ngày Quốc tế Phụ nữ',
 	},
 	{
-		type: 'anually',
+		type: 'annualy',
 		isLunar: false,
 		date: new Date('2025-06-01'),
 		content: 'Ngày Quốc tế Thiếu nhi',
@@ -152,8 +151,8 @@ const LunarCalendar: React.FC<Props> = ({
 	const getEventsForDate = (date: Date) => {
 		return events.filter((event) => {
 			if (event.type === 'once') {
-				return date.toDateString() === event.date.toDateString();
-			} else if (event.type === 'anually') {
+				return dayjs(date).isSame(event.date, 'day');
+			} else if (event.type === 'annualy') {
 				const eventDate = event.date;
 				if (event.isLunar) {
 					// Convert both dates to lunar for comparison
@@ -262,14 +261,14 @@ const LunarCalendar: React.FC<Props> = ({
 			<div className='calendar-header'>
 				<div className='header-left'>
 					<button
-						onClick={() =>
-							setCurrentMonth(
-								new Date(currentMonth.getFullYear() - 1, currentMonth.getMonth())
-							)
-						}>
+						tabIndex={0}
+						onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear() - 1, currentMonth.getMonth()))}
+						aria-label="Previous year">
 						<ArrowLeftIcon style={{ width: '20px', height: '20px' }} />
 					</button>
 					<button
+						tabIndex={0}
+						aria-label='Previous month'
 						onClick={() =>
 							setCurrentMonth(
 								new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1)
@@ -281,6 +280,7 @@ const LunarCalendar: React.FC<Props> = ({
 
 				<div className='header-center'>
 					<select
+						tabIndex={0}
 						value={currentMonth.getMonth()}
 						onChange={handleMonthChange}>
 						{months.map((month, index) => (
@@ -292,6 +292,7 @@ const LunarCalendar: React.FC<Props> = ({
 						))}
 					</select>
 					<select
+						tabIndex={0}
 						value={currentMonth.getFullYear()}
 						onChange={handleYearChange}>
 						{years.map((year) => (
@@ -306,6 +307,8 @@ const LunarCalendar: React.FC<Props> = ({
 
 				<div className='header-right'>
 					<button
+						tabIndex={0}
+						aria-label='Next month'
 						onClick={() =>
 							setCurrentMonth(
 								new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1)
@@ -314,6 +317,8 @@ const LunarCalendar: React.FC<Props> = ({
 						<ArrowRightLight style={{ width: '20px', height: '20px' }} />
 					</button>
 					<button
+						tabIndex={0}
+						aria-label='Next year'
 						onClick={() =>
 							setCurrentMonth(
 								new Date(currentMonth.getFullYear() + 1, currentMonth.getMonth())

@@ -1,6 +1,5 @@
 
 import React from 'react';
-import './lunarDatePickerStyle.scss';
 import { SolarDate } from '@nghiavuive/lunar_date_vi';
 import { CalendarIcon } from './icons/CalendarIcon';
 import { ArrowLeftIcon } from './icons/ArrowLeftIcon';
@@ -9,6 +8,7 @@ import dayjs from 'dayjs';
 import { ArrowRightLight } from './icons/ArrowRightLight';
 import { ArrowLeftLight } from './icons/ArrowLeftLight';
 import customParseFormat from 'dayjs/plugin/customParseFormat'
+import { InputSize, InputStatus } from './type';
 
 dayjs.extend(customParseFormat);
 
@@ -28,6 +28,8 @@ interface Props {
 	required?: boolean;
 	maxDate?: Date;
 	minDate?: Date;
+	size? : InputSize;
+	status? : InputStatus;
 }
 
 const formatDate = (date: Date, valueFormat: string, locale: string) => {
@@ -49,8 +51,10 @@ const LunarDatePicker: React.FC<Props> = ({
 	label = 'Date',
 	inputName = 'date',
 	required = true,
-	maxDate = dayjs().add(5,'day').toDate(),
-	minDate = new Date()
+	maxDate = dayjs().add(7,'day').toDate(),
+	minDate = new Date(),
+	size = 'large',
+	status = 'error',
 }) => {
 	const [selectedDate, setSelectedDate] = React.useState<Date>(value || new Date());
 	const [showCalendar, setShowCalendar] = React.useState(false);
@@ -213,14 +217,14 @@ const LunarDatePicker: React.FC<Props> = ({
 	};
 
 	return (
-		<div className='lunar-date-picker'>
+		<div className='lunar-date-picker' >
 			{label && (
 				<label htmlFor={inputName} className="date-picker-label">
 					{label}
 					{required && <span className="required">*</span>}
 				</label>
 			)}
-			<div className='date-input-container'>
+			<div className='date-input-container' data-size={size} data-status={status}>
 				<input
 					ref={inputRef}
 					type='text'
@@ -265,11 +269,15 @@ const LunarDatePicker: React.FC<Props> = ({
 				<div className='calendar-header'>
 					<div>
 						<button
+							tabIndex={0}
+							aria-label='Previous month'
 							onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear() - 1, currentMonth.getMonth()))}
 						>
 							<ArrowLeftIcon style={{ width: '20px', height: '20px' }} />
 						</button>
 						<button
+							tabIndex={0}
+							aria-label='Previous month'
 							onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))}
 						>
 							<ArrowLeftLight style={{ width: '20px', height: '20px' }} />
@@ -285,11 +293,15 @@ const LunarDatePicker: React.FC<Props> = ({
 
 					<div>
 						<button
+							tabIndex={0}
+							aria-label='Next month'
 							onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1))}
 						>
 							<ArrowRightLight style={{ width: '20px', height: '20px' }} />
 						</button>
 						<button
+							tabIndex={0}
+							aria-label='Next year'
 							onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear() + 1, currentMonth.getMonth()))}
 						>
 							<ArrowRightIcon style={{ width: '20px', height: '20px' }} />

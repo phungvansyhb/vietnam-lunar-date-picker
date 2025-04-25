@@ -1,0 +1,67 @@
+
+$input-sizes: (
+	small: (
+		padding: 8px 12px,
+		font-size: 12px,
+		icon-size: 12px,
+	),
+	medium: (
+		padding: 10px 12px,
+		font-size: 14px,
+		icon-size: 14px,
+	),
+	large: (
+		padding: 16px 12px,
+		font-size: 16px,
+		icon-size: 16px,
+	),
+);
+
+$input-status: (
+	default: (
+		border-color: #ccc,
+		message-color: #09090b,
+		focus-color: #1a365d,
+		focus-shadow: rgba(26, 54, 93, 0.25),
+		hover-color: #999,
+	),
+	warning: (
+		border-color: #fbbf24,
+		message-color: #fbbf24,
+		focus-color: #92400e,
+		focus-shadow: rgba(250, 112, 27, 0.25),
+		hover-color: #f59e0b,
+	),
+	error: (
+		border-color: #f87171,
+		message-color: #f87171,
+		focus-color: #991b1b,
+		focus-shadow: rgba(242, 14, 14, 0.25),
+		hover-color: #ef4444,
+	),
+	success: (
+		border-color: #4ade80,
+		message-color: #4ade80,
+		focus-color: #166534,
+		focus-shadow: rgba(59, 248, 131, 0.25),
+		hover-color: #22c55e,
+	),
+);
+
+:root {
+	// Common variables
+	--input-border-radius: 6px;
+	--input-border-color: #ccc;
+	--input-transition: border-color 0.1s ease;
+	--input-label-size: 14px;
+	--input-label-color: #09090b;
+	--input-label-weight: 500;
+	--input-message-size: 14px;
+	--input-message-color: #09090b;
+	--calendar-background-color: #fff;
+	--calendar-active-background-color: #c23232;
+	--calendar-selected-color: #fff;
+	--calendar-weekend-color: #c23232;
+	--calendar-today-color: #c23232;
+}
+

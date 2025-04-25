@@ -1,39 +1,49 @@
+@use 'sass:map';
+@use './index.scss' as *;
+
 .lunar-date-picker {
 	position: relative;
 	width: auto;
 	font-family: 'system-ui';
-	font-size: inherit;
 	.date-input-container {
 		position: relative;
 		display: flex;
 		align-items: center;
-
-		.date-input {
-			font-family: 'system-ui';
-			padding: 8px 32px 8px 8px;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			width: 100%;
-			transition: border-color 0.2s ease;
-			&:focus {
-				outline: none;
-				border-color: #007bff;
-				box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-			}
-
-			&.active {
-				border-color: #007bff;
-				box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-			}
-
-			&.required {
-				border-color: #ff4d4f;
-
-				&:focus {
-					border-color: #ff4d4f;
-					box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+		@each $size, $value in $input-sizes {
+			&[data-size='#{$size}'] {
+				font-size: map.get($value, 'font-size');
+				.date-input {
+					padding: map.get($value, 'padding');
+					font-size: map.get($value, 'font-size');
 				}
 			}
+		}
+		@each $status, $value in $input-status {
+			&[data-status='#{$status}'] {
+				color: map.get($value, 'message-color');
+				.date-input {
+					outline:none;
+					border:1px solid map.get($value, 'border-color');
+					&:focus {
+						border:1px solid map.get($value, 'focus-color');
+						box-shadow:0px 0px 0px 2px map.get($value, 'focus-shadow');
+					}
+					&:hover {
+						border:1px solid map.get($value, 'hover-color');
+					}
+					&.active {
+						
+						border:1px solid map.get($value, 'focus-color');
+						box-shadow:0px 0px 0px 2px map.get($value, 'focus-shadow');
+					}
+				}
+
+			}
+		}
+		.date-input {
+			border-radius: var(--input-border-radius);
+			width: 100%;
+			transition: border-color 0.2s ease;
 		}
 
 		.clear-button {
@@ -43,8 +53,8 @@
 			border: none;
 			padding: 0;
 			cursor: pointer;
-			font-size: 16px;
-			color: #999;
+			color: inherit;
+			// font-size: 16px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -79,7 +89,7 @@
 		background: white;
 		border: 1px solid #f0f0f0;
 		border-radius: 8px;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 		z-index: 1000;
 		overflow: hidden;
 		max-height: 0;
@@ -108,7 +118,7 @@
 				padding: 0;
 				margin: 0;
 				&:hover {
-					color: #007bff;
+					color: var(--calendar-active-background-color);
 				}
 			}
 		}
@@ -125,7 +135,7 @@
 			padding: 5px;
 			font-size: 0.9em;
 			&.sunday {
-				color: #c23232;
+				color: var(--calendar-weekend-color);
 			}
 		}
 
@@ -150,7 +160,7 @@
 			/* sunday date */
 			&.sunday {
 				.solar-date {
-					color: #c23232;
+					color: var(--calendar-weekend-color);
 				}
 			}
 
@@ -168,7 +178,7 @@
 			}
 			/* selected date */
 			&.selected {
-				background-color: #c23232;
+				background-color: var(--calendar-active-background-color);
 				color: white;
 
 				.solar-date {
@@ -180,7 +190,7 @@
 				}
 			}
 			&.today {
-				border: 1px solid #c23232;
+				border: 1px solid var(--calendar-active-background-color);
 			}
 
 			&.disabled {
@@ -195,10 +205,10 @@
 		display: block;
 		margin-bottom: 8px;
 		font-weight: 500;
-		color: #333;
+		color: var(--input-label-color);
 
 		.required {
-			color: #ff4d4f;
+			color: red;
 			margin-left: 4px;
 		}
 	}
