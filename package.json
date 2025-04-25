@@ -1,6 +1,6 @@
 {
 	"name": "@phungvansyhb/vietnamese-lunar-date-picker",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"description": "A React component for displaying solar and lunar dates with Vietnamese holiday support",
 	"license": "MIT",
 	"devDependencies": {
