@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Add React version 19 in peerdependencies
 
-## [1.0.1] - 2024-03-19
+## [1.1.0] - 2024-03-19
 
 ### Added
 - CSS variables support for consistent theming
