@@ -4,8 +4,8 @@
 	"description": "A React component for displaying solar and lunar dates with Vietnamese holiday support",
 	"license": "MIT",
 	"devDependencies": {
-		"@types/react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-		"@types/react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
+		"@types/react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+		"@types/react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
 		"babel-core": "^6.26.3",
 		"babel-runtime": "^6.26.0",
 		"react": "^19.1.0",
