@@ -14,9 +14,7 @@ A React component library for displaying and selecting dates with both solar (Gr
 ![Lunar Date Calendar](./src/icons/calendar.png)
 
 
-
 ## Features
-
 -   Display both solar and lunar dates
 -   Support for Vietnamese holidays and events
 -   Customizable date selection
@@ -25,15 +23,36 @@ A React component library for displaying and selecting dates with both solar (Gr
 -   Event indicators for special dates
 -   Localization support
 
-## Installation
+## Usage example 
+```jsx
+    import '@phungvansyhb/vietnamese-lunar-date-picker/dist/styles.css';
+    import { 
+    LunarDatePicker,
+    LunarCalendar,
+    VietNameseEvents,
+    LunarDate,
+    SolarDate } 
+    from '@phungvansyhb/vietnamese-lunar-date-picker';
 
-bash
+    function App() {
+        console.log(VietNameseEvents)
+        console.log('lunar date', new SolarDate(new Date()).toLunarDate())
+        return (
+            <>
+                <div style={{ width: '360px'}}>
+                    <LunarDatePicker />
+                </div>
+                <div style={{ width: '1000px' }}>
+                        <LunarCalendar />
+                </div>
+            
+            </>
+        );
+    }
 
-`npm install lunar-date`
+    export default App;
+```
 
-or
-
-`yarn add lunar-date`
 
 ## Props
 
@@ -71,31 +90,6 @@ or
 | minDate | Date | undefined | Minimum selectable date |
 | events | { type: 'anually' \| 'once', date: Date, content: string, isLunar: boolean }[] | VietNameseEvents | Array of events to display on calendar |
 
-
-## Usage example 
-```
-import 'lunar-date/dist/styles.css';
-import { LunarDatePicker, LunarCalendar , VietNameseEvents , LunarDate , SolarDate } from 'lunar-date';
-
-function App() {
-    console.log(VietNameseEvents)
-     console.log('lunar date', new SolarDate(new Date()).toLunarDate())
-	return (
-        <>
-            <div style={{ width: '360px'}}>
-                <LunarDatePicker />
-            </div>
-            <div style={{ width: '1000px' }}>
-                    <LunarCalendar />
-            </div>
-           
-        </>
-	);
-}
-
-export default App;
-
-```
 
 ## Dependencies
 
